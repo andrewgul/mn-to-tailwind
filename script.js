@@ -50,6 +50,16 @@ function convertBg(names) {
   );
 }
 
+function convertBorderColor(names) {
+  return names.reduce(
+    (acc, name) => ({
+      ...acc,
+      [`bc--vkui--color_${name}`]: `border-(--vkui--color_${name})`,
+    }),
+    {}
+  );
+}
+
 const ALL_COLORS = [
   "text_primary",
   "text_subhead",
@@ -58,6 +68,7 @@ const ALL_COLORS = [
   "background_content",
   "overlay_primary",
   "icon_medium",
+  "image_border_alpha",
 ];
 
 const MN_TO_TAILWIND_MAP = {
@@ -66,6 +77,7 @@ const MN_TO_TAILWIND_MAP = {
   dF: "flex",
   aiC: "items-center",
   jcC: "justify-center",
+  jcSB: "justify-between",
   fxdC: "flex-col",
   r8: "rounded-[8px]",
   p4_6: "p-[4px_6px]",
@@ -83,6 +95,11 @@ const MN_TO_TAILWIND_MAP = {
   fx1: "flex-1",
   bxz: "box-border",
   cr: "cursor-pointer",
+  crP: "cursor-pointer",
+  olN: "outline-none",
+  dI: "inline",
+  fxs0: "shrink-0",
+  ov: "overflow-hidden",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...from1ToNTemplate("lh", "leading"),
@@ -97,17 +114,21 @@ const MN_TO_TAILWIND_MAP = {
   ...from1ToNTemplate("pr"),
   ...from1ToNTemplate("pv", "py"),
   ...from1ToNTemplate("ph", "px"),
+  ...from1ToNTemplate("p"),
   ...from1ToNTemplate("mb"),
   ...from1ToNTemplate("mt"),
   ...from1ToNTemplate("ml"),
   ...from1ToNTemplate("mr"),
   ...from1ToNTemplate("mv", "my"),
   ...from1ToNTemplate("mh", "mx"),
+  ...from1ToNTemplate("m"),
   ...from1ToNTemplate("gap"),
   ...from1ToNTemplate("h"),
   ...from1ToNTemplate("r", "rounded"),
   ...from1ToNTemplate("hmin", "min-h", 300),
   ...from1ToNTemplate("wmin", "min-w", 300),
+  ...from1ToNTemplate("w", "w", 500),
+  ...from1ToNTemplate("h", "h", 500),
 };
 
 function hideSnackbar() {
