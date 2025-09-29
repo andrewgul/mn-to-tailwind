@@ -63,8 +63,10 @@ function convertBorderColor(names) {
 const ALL_COLORS = [
   "text_primary",
   "text_subhead",
-  "icon_accent",
   "text_secondary",
+  "text_contrast",
+  "icon_accent",
+  "icon_medium",
   "background_content",
   "overlay_primary",
   "icon_medium",
@@ -100,10 +102,14 @@ const MN_TO_TAILWIND_MAP = {
   dI: "inline",
   fxs0: "shrink-0",
   ov: "overflow-hidden",
+  s: "inset-0",
+  wFitContent: "w-fit",
+  rz180: "rotate-z-180",
+  dn300: "duration-300",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...from1ToNTemplate("lh", "leading"),
-  ...from1ToNTemplate("f", "font"),
+  ...from1ToNTemplate("f", "text"),
   ...from1ToNTemplate("sb", "bottom"),
   ...from1ToNTemplate("st", "top"),
   ...from1ToNTemplate("sr", "right"),
@@ -129,6 +135,10 @@ const MN_TO_TAILWIND_MAP = {
   ...from1ToNTemplate("wmin", "min-w", 300),
   ...from1ToNTemplate("w", "w", 500),
   ...from1ToNTemplate("h", "h", 500),
+  ...from1ToN(
+    (n) => `z${n}`,
+    (n) => `z-${n}`
+  ),
 };
 
 function hideSnackbar() {
