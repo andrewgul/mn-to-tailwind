@@ -12,7 +12,7 @@ const Available = document.getElementById("available");
 let resultForCopying = "";
 
 function from1ToN(from, to, n = 64) {
-  const numbers = Array.from({ length: n }, (_, index) => index + 1);
+  const numbers = Array.from({ length: n + 1 }, (_, index) => index);
 
   return numbers.reduce(
     (acc, val) => ({
@@ -106,6 +106,7 @@ const MN_TO_TAILWIND_MAP = {
   wFitContent: "w-fit",
   rz180: "rotate-z-180",
   dn300: "duration-300",
+  r: 'rounded-full',
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...from1ToNTemplate("lh", "leading"),
