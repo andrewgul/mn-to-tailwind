@@ -65,6 +65,7 @@ const ALL_COLORS = [
   "text_subhead",
   "text_secondary",
   "text_contrast",
+  "text_accent_themed",
   "icon_accent",
   "icon_medium",
   "background_content",
@@ -72,6 +73,9 @@ const ALL_COLORS = [
   "icon_medium",
   "image_border_alpha",
   "background_accent_themed",
+  "icon_accent_themed",
+  "separator_primary",
+  "field_background",
 ];
 
 const MN_TO_TAILWIND_MAP = {
@@ -93,6 +97,8 @@ const MN_TO_TAILWIND_MAP = {
   "lts-0.18px": "tracking-[-0.18px]",
   "lts.15px": "tracking-[.15px]",
   "lts0.15px": "tracking-[.15px]",
+  "lts.2px": "tracking-[.2px]",
+  "lts-.18px": "tracking-[-.18px]",
   lts0: "tracking-[0]",
   "lts-.18px": "tracking-[-.18px]",
   dB: "block",
@@ -118,8 +124,13 @@ const MN_TO_TAILWIND_MAP = {
   bs: "border-solid",
   hmin: "min-h-full",
   tc: "text-center",
+  bs: "border-solid",
+  bxsh: "shadow-none",
+  aiStart: "items-start",
+  wMaxContent: "w-max",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
+  ...convertBorderColor(ALL_COLORS),
   ...from1ToNTemplate("lh", "leading"),
   ...from1ToNTemplate("f", "text"),
   ...from1ToNTemplate("sb", "bottom"),
@@ -141,7 +152,6 @@ const MN_TO_TAILWIND_MAP = {
   ...from1ToNTemplate("mh", "mx"),
   ...from1ToNTemplate("m"),
   ...from1ToNTemplate("gap"),
-  ...from1ToNTemplate("h"),
   ...from1ToNTemplate("r", "rounded"),
   ...from1ToNTemplate("hmin", "min-h", 300),
   ...from1ToNTemplate("wmin", "min-w", 300),
@@ -272,6 +282,20 @@ function showCopy() {
   if (Copy) {
     Copy.style.display = "inline";
   }
+}
+
+function transformPaddingString(str) {
+  // Regular expression to match p(number)_(number)_(number) pattern
+  const pattern = /^p(\d+)_(\d+)_(\d+)$/;
+
+  const match = str.match(pattern);
+
+  if (match) {
+    const [, first, second, third] = match;
+    return `p_[${first}px_${second}px_${third}px]`;
+  }
+
+  return str; // Return original string if pattern doesn't match
 }
 
 function process(classNames) {
