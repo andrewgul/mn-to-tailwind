@@ -128,6 +128,8 @@ const MN_TO_TAILWIND_MAP = {
   bxsh: "shadow-none",
   aiStart: "items-start",
   wMaxContent: "w-max",
+  ff_Roboto: "font-roboto",
+  ff_VK_Sans_Display: "font-vk-sans",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...convertBorderColor(ALL_COLORS),
