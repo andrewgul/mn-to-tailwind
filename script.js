@@ -76,6 +76,8 @@ const ALL_COLORS = [
   "icon_accent_themed",
   "separator_primary",
   "field_background",
+  "span_primary",
+  "icon_secondary",
 ];
 
 const MN_TO_TAILWIND_MAP = {
@@ -130,6 +132,7 @@ const MN_TO_TAILWIND_MAP = {
   wMaxContent: "w-max",
   ff_Roboto: "font-roboto",
   ff_VK_Sans_Display: "font-vk-sans",
+  fillCT: "fill-current",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...convertBorderColor(ALL_COLORS),
@@ -287,7 +290,6 @@ function showCopy() {
 }
 
 function transformPaddingString(str) {
-  // Regular expression to match p(number)_(number)_(number) pattern
   const pattern = /^p(\d+)_(\d+)_(\d+)$/;
 
   const match = str.match(pattern);
@@ -297,7 +299,21 @@ function transformPaddingString(str) {
     return `p_[${first}px_${second}px_${third}px]`;
   }
 
-  return str; // Return original string if pattern doesn't match
+  return null;
+}
+
+function customTransformers(str) {
+  const transormers = [transformPaddingString];
+
+  for (transform of transormers) {
+    const result = transform(str);
+
+    if (result) {
+      return result;
+    }
+  }
+
+  return null;
 }
 
 function process(classNames) {
@@ -309,7 +325,8 @@ function process(classNames) {
     const asArray = classNames.split(" ");
 
     const transformed = asArray.map((classNameMN) => {
-      const found = MN_TO_TAILWIND_MAP[classNameMN];
+      const found =
+        MN_TO_TAILWIND_MAP[classNameMN] || customTransformers(classNameMN);
 
       if (found) {
         return {
