@@ -296,7 +296,7 @@ function transformPaddingString(str) {
 
   if (match) {
     const [, first, second, third] = match;
-    return `p_[${first}px_${second}px_${third}px]`;
+    return `p-[${first}px_${second}px_${third}px]`;
   }
 
   return null;
