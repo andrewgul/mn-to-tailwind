@@ -54,6 +54,7 @@
 
       .controls {
         display: flex;
+        align-items: center;
         gap: 12px;
       }
 
@@ -114,6 +115,11 @@
       .missing-hint {
         color: var(--gray);
       }
+
+      .checkbox-copy-wrapper {
+        display: flex;
+        gap: 8px;
+      }
     </style>
   </head>
   <body>
@@ -124,6 +130,10 @@
         <input id="input" />
         <button id="button">Преобразовать (Enter)</button>
         <button id="reset">Сбросить</button>
+        <div class="checkbox-copy-wrapper">
+          <input type="checkbox" id="checkbox-copy" />
+          <label for="checkbox-copy">Копировать сразу</label>
+        </div>
       </div>
     </div>
     <div class="block">

@@ -8,6 +8,7 @@ const Missing = document.getElementById("missing");
 const MissingTitle = document.getElementById("missing-title");
 const Snackbar = document.getElementById("snackbar");
 const Available = document.getElementById("available");
+const CheckboxCopy = document.getElementById("checkbox-copy");
 
 let resultForCopying = "";
 
@@ -79,6 +80,7 @@ const ALL_COLORS = [
   "span_primary",
   "icon_secondary",
   "secondary_alpha",
+  "background_secondary_alpha",
 ];
 
 const MN_TO_TAILWIND_MAP = {
@@ -134,6 +136,7 @@ const MN_TO_TAILWIND_MAP = {
   ff_Roboto: "font-roboto",
   ff_VK_Sans_Display: "font-vk-sans",
   fillCT: "fill-current",
+  tov: "text-ellipsis",
   ...convertColors(ALL_COLORS),
   ...convertBg(ALL_COLORS),
   ...convertBorderColor(ALL_COLORS),
@@ -261,6 +264,10 @@ function showResult(result) {
 
     showCopy();
 
+    if (CheckboxCopy.checked) {
+      copyToClipboard(resultForCopying);
+    }
+
     if (ResultTitle) {
       ResultTitle.innerHTML = "🌀 Результат";
     }
@@ -349,6 +356,7 @@ function process(classNames) {
     showResult(transformed);
   } catch (error) {
     // @todo
+    console.error("Ошибка преобразования", error);
   }
 }
 
@@ -371,6 +379,10 @@ Copy.addEventListener("click", () => {
 Input.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
-    process();
+    const value = Input?.value;
+
+    if (value) {
+      process(value);
+    }
   }
 });
