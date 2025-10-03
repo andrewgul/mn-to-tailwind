@@ -78,6 +78,7 @@ const ALL_COLORS = [
   "field_background",
   "span_primary",
   "icon_secondary",
+  "secondary_alpha",
 ];
 
 const MN_TO_TAILWIND_MAP = {
@@ -365,4 +366,11 @@ Reset.addEventListener("click", () => {
 
 Copy.addEventListener("click", () => {
   copyToClipboard(resultForCopying);
+});
+
+Input.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    process();
+  }
 });

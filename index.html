@@ -21,7 +21,7 @@
       }
 
       * {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         margin: 0;
         padding: 0;
       }
@@ -75,7 +75,7 @@
         color: var(--red);
       }
 
-      .result-content{
+      .result-content {
         display: flex;
         gap: 12px;
       }
@@ -117,14 +117,12 @@
     </style>
   </head>
   <body>
-    <div class="block main-title">
-      🚀 MN -> Tailwind
-    </div>
+    <div class="block main-title">🚀 MN -> Tailwind</div>
     <div class="block">
       <div class="title">🔮 Строка с классами</div>
       <div class="controls">
         <input id="input" />
-        <button id="button">Преобразовать</button>
+        <button id="button">Преобразовать (Enter)</button>
         <button id="reset">Сбросить</button>
       </div>
     </div>
@@ -140,7 +138,11 @@
       <ul id="missing"></ul>
     </div>
     <div class="error"></div>
-    <div class="snackbar_invisible" id="snackbar" style="display: none; opacity: 0;"></div>
+    <div
+      class="snackbar_invisible"
+      id="snackbar"
+      style="display: none; opacity: 0"
+    ></div>
     <script src="./script.js"></script>
   </body>
 </html>
